@@ -86,14 +86,14 @@ const MembershipPage = () => {
   const renderMemberForm = () => (
     <Box sx={{ mt: 2 }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={9} md={6}>
           <TextField
             fullWidth
             label="Full Name"
             defaultValue={selectedMember?.name}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={9} md={6}>
           <FormControl fullWidth>
             <InputLabel>Role</InputLabel>
             <Select
@@ -108,7 +108,7 @@ const MembershipPage = () => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={9} md={6}>
           <TextField
             fullWidth
             label="Email"
@@ -116,14 +116,14 @@ const MembershipPage = () => {
             defaultValue={selectedMember?.email}
           />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={9} md={6}>
           <TextField
             fullWidth
             label="Phone Number"
             defaultValue={selectedMember?.phone}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={9}>
           <TextField
             fullWidth
             label="Additional Notes"

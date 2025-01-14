@@ -137,7 +137,7 @@ const MainLayout = () => {
     { id: 2, text: 'Meeting reminder: Investment Club', time: '1 hour ago' },
     { id: 3, text: 'New member request', time: '2 hours ago' },
   ];
-
+// Chama name or icon goes here
   const drawer = (
     <Box>
       <Toolbar>

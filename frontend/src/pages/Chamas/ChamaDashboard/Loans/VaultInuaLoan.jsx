@@ -97,10 +97,10 @@ const LoansPage = () => {
   ];
 
   const loanStats = {
-    totalLoans: 500000,
-    activeLoans: 350000,
-    defaultedLoans: 20000,
-    availableFunds: 150000,
+    totalVaultLoans: 500000,
+    activeVaultLoans: 350000,
+    defaultedVaultLoans: 20000,
+    availableFunds: 3,
   };
 
   const handleTabChange = (event, newValue) => {
@@ -125,50 +125,53 @@ const LoansPage = () => {
 
   const renderLoanStats = () => (
     <Grid container spacing={3} sx={{ mb: 3 }}>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={5} md={3}>
         <Card>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Total Loans
+              Total Vault Loans
             </Typography>
             <Typography variant="h4">
-              KES {loanStats.totalLoans.toLocaleString()}
+              KES {loanStats.totalVaultLoans.toLocaleString()}
             </Typography>
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={5} md={3}>
         <Card>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Active Loans
+              Active Vault Loans
             </Typography>
             <Typography variant="h4">
-              KES {loanStats.activeLoans.toLocaleString()}
+              KES {loanStats.activeVaultLoans.toLocaleString()}
             </Typography>
-          </CardContent>
+            </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={5} md={3}>
         <Card>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Defaulted Loans
+              Defaulted Vault Loans
             </Typography>
             <Typography variant="h4" color="error">
-              KES {loanStats.defaultedLoans.toLocaleString()}
+              KES {loanStats.defaultedVaultLoans.toLocaleString()}
             </Typography>
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={5} md={3}>
         <Card>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Available Funds
+              Total Completed Loans
             </Typography>
             <Typography variant="h4" color="success">
-              KES {loanStats.availableFunds.toLocaleString()}
+               {loanStats.availableFunds.toLocaleString()}
+            </Typography>
+            <Typography variant="h5">
+              Congrats 🎇
             </Typography>
           </CardContent>
         </Card>
@@ -323,14 +326,14 @@ const LoansPage = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Member</TableCell>
+            <TableCell>Loan</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Purpose</TableCell>
             <TableCell>Duration</TableCell>
             <TableCell>Start Date</TableCell>
             <TableCell>Status</TableCell>
             <TableCell>Progress</TableCell>
-            <TableCell>Actions</TableCell>
+            {/* <TableCell>Actions</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -338,8 +341,8 @@ const LoansPage = () => {
             <TableRow key={loan.id}>
               <TableCell>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Avatar sx={{ mr: 1 }}>{loan.member[0]}</Avatar>
-                  {loan.member}
+                  <p>{loan.count}</p>
+                  {loan.id}
                 </Box>
               </TableCell>
               <TableCell>KES {loan.amount.toLocaleString()}</TableCell>
@@ -374,7 +377,7 @@ const LoansPage = () => {
                   </Box>
                 </Box>
               </TableCell>
-              <TableCell>
+              {/* <TableCell>
                 <IconButton
                   color="primary"
                   onClick={() => {
@@ -387,7 +390,7 @@ const LoansPage = () => {
                 <IconButton color="primary">
                   <Assessment />
                 </IconButton>
-              </TableCell>
+              </TableCell> */}
             </TableRow>
           ))}
         </TableBody>
@@ -407,7 +410,7 @@ const LoansPage = () => {
           onClick={handleNewLoan}
           sx={{ bgcolor: '#1a237e' }}
         >
-          Request Vault Loan
+          Reques Vault Loan
         </Button>
       </Box>
 
@@ -420,7 +423,7 @@ const LoansPage = () => {
           <Tab label="Completed Loans" />
         </Tabs>
       </Box>
-
+      
       {renderLoans()}
 
       {/* New Loan Application Dialog */}

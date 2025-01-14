@@ -12,26 +12,26 @@ import {
   Alert,
 } from '@mui/material';
 
-const CreateChama = () => {
-  const [chamaName, setChamaName] = useState('');
-  const [chamaDescription, setChamaDescription] = useState('');
-  const [chamaType, setChamaType] = useState('');
-  const [chamaRules, setChamaRules] = useState('');
-  const [chamaIcon, setChamaIcon] = useState(null);
+const NewModule = () => {
+  const [ModuleName, setModuleName] = useState('');
+  const [ModuleDescription, setModuleDescription] = useState('');
+  const [ModuleType, setModuleType] = useState('');
+  const [ModuleRules, setModuleRules] = useState('');
+  const [ModuleIcon, setModuleIcon] = useState(null);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Logic to create a new Chama goes here
-    setSnackbarMessage('Chama created successfully!');
+    setSnackbarMessage('Module created successfully!');
     setOpenSnackbar(true);
     // Reset form fields
-    setChamaName('');
-    setChamaDescription('');
-    setChamaType('');
-    setChamaRules('');
-    setChamaIcon(null);
+    setModuleName('');
+    setModuleDescription('');
+    setModuleType('');
+    setModuleRules('');
+    setModuleIcon(null);
   };
 
   const handleCloseSnackbar = () => {
@@ -41,15 +41,15 @@ const CreateChama = () => {
   return (
     <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Create New Chama
+        Create New Chama Module
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
-          label="Chama Name"
+          label="Module Name"
           fullWidth
           required
-          value={chamaName}
-          onChange={(e) => setChamaName(e.target.value)}
+          value={ModuleName}
+          onChange={(e) => setModuleName(e.target.value)}
           sx={{ mb: 2 }}
         />
         <TextField
@@ -58,55 +58,56 @@ const CreateChama = () => {
           multiline
           rows={4}
           required
-          value={chamaDescription}
-          onChange={(e) => setChamaDescription(e.target.value)}
+          value={ModuleDescription}
+          onChange={(e) => setModuleDescription(e.target.value)}
           sx={{ mb: 2 }}
         />
         <FormControl fullWidth required sx={{ mb: 2 }}>
-          <InputLabel>Chama Type</InputLabel>
+          <InputLabel>module Type</InputLabel>
           <Select
-            value={chamaType}
-            onChange={(e) => setChamaType(e.target.value)}
+            value={ModuleType}
+            onChange={(e) => setModuleType(e.target.value)}
           >
             <MenuItem value="savings">Savings</MenuItem>
             <MenuItem value="investment">Investment</MenuItem>
             <MenuItem value="Welafare">Welfare</MenuItem>
+            <MenuItem value="Welafare">others</MenuItem>
           </Select>
         </FormControl>
         <FormControl fullWidth required sx={{ mb: 2 }}>
           <InputLabel>Currency</InputLabel>
           <Select
-            value={chamaType}
-            onChange={(e) => setChamaType(e.target.value)}
+            value={ModuleType.toString()}
+            onChange={(e) => setModuleType(e.target.value)}
           >
-            <MenuItem value="USD">USD $</MenuItem>
+            <MenuItem value="USD $">USD $</MenuItem>
             <MenuItem value="KSH">KSH</MenuItem>
-            <MenuItem value="Euro">Euro £</MenuItem>
-            <MenuItem value="Nyra">Nyra ₦</MenuItem>
+            <MenuItem value="Euro £">Euro £</MenuItem>
+            <MenuItem value="Nyra ₦">Nyra ₦</MenuItem>
           </Select>
         </FormControl>
         <TextField
-          label="Chama Rules"
+          label="Module Rules"
           fullWidth
           multiline
           rows={4}
           required
-          value={chamaRules}
-          onChange={(e) => setChamaRules(e.target.value)}
+          value={ModuleRules}
+          onChange={(e) => setModuleRules(e.target.value)}
           sx={{ mb: 2 }}
         />
-           <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
         <Button variant="auto" component="label" sx={{ mb: 2 }}>
           Upload Icon
           <input
             type="file"
             hidden
-            onChange={(e) => setChamaIcon(e.target.files[0])}
+            onChange={(e) => setModuleIcon(e.target.files[0])}
           />
           
         </Button >
         <Button type="submit" variant="contained" color="primary">
-          Create Chama
+          Create Module
         </Button>
         </Box>
       </form>
@@ -119,4 +120,4 @@ const CreateChama = () => {
   );
 };
 
-export default CreateChama;
+export default NewModule;

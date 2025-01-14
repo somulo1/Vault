@@ -137,7 +137,7 @@ const SettingsPage = () => {
                 <ListItem>
                   <ListItemText
                     primary="SMS Notifications"
-                    secondary="Receive updates via SMS"
+                    secondary="Receive updates via SMS .PREMIUM" 
                   />
                   <ListItemSecondaryAction>
                     <Switch

@@ -49,6 +49,7 @@ import {
   LightMode,
   NavigateNext,
   ArrowBack,
+  Dashboard,
 } from '@mui/icons-material';
 import { useNavigate, useLocation, Outlet, useParams } from 'react-router-dom';
 import SearchBar from '../../../components/common/SearchBar';
@@ -133,7 +134,7 @@ const ChamaContent = () => {
   };
 
   const menuItems = [
-    { text: 'Home', icon: <Home />, path: `/chama/${chamaId}/home` },
+    { text: 'Home', icon: <Dashboard />, path: `/chama/${chamaId}/home` },
     { text: 'Membership', icon: <Group />, path: `/chama/${chamaId}/membership` },
     { text: 'Meetings', icon: <Event />, path: `/chama/${chamaId}/meetings` },
     { text: 'Accounts', icon: <AccountBalance />, path: `/chama/${chamaId}/accounts` },
@@ -144,13 +145,16 @@ const ChamaContent = () => {
     { text: 'Welfare', icon: <Favorite />, path: `/chama/${chamaId}/welfare` },
     { text: 'Goals', icon: <Flag />, path: `/chama/${chamaId}/goals` },
     { text: 'Billing', icon: <MonetizationOn />, path: `/chama/${chamaId}/billing` },
+    {text: 'Add Chama Module', icon: <Group />, path: `/chama/${chamaId}/NewModule` },
     { text: 'Settings', icon: <Settings />, path: `/chama/${chamaId}/settings` },
   ];
 
   const notifications = [
+   
     { id: 1, text: 'New loan request from John', time: '5 minutes ago' },
     { id: 2, text: 'Meeting scheduled for tomorrow', time: '1 hour ago' },
     { id: 3, text: 'Payment reminder: Monthly contribution', time: '2 hours ago' },
+    { id: 4, text: 'Subscription reminder: Monthly subscription is due 🚩', time: '2 hours ago' },
   ];
 
   // Mock chama data - replace with actual data
@@ -160,7 +164,7 @@ const ChamaContent = () => {
     <Box>
       <Toolbar>
         <Typography variant="h6" noWrap component="div">
-          {chamaName}
+          ChamaVault
         </Typography>
       </Toolbar>
       <Divider />
@@ -211,7 +215,7 @@ const ChamaContent = () => {
             onClick={handleBackToChamas}
             sx={{ mr: 2 }}
           >
-            <ArrowBack />
+            <Home></Home>
           </IconButton>
 
           <Breadcrumbs
@@ -236,7 +240,7 @@ const ChamaContent = () => {
                 '&:hover': { textDecoration: 'underline' }
               }}
             >
-              My Chamas
+              Back
             </Link>
             <Typography color="white">{chamaName}</Typography>
           </Breadcrumbs>
@@ -247,7 +251,7 @@ const ChamaContent = () => {
           }}>
             <SearchBar
               placeholder="Search members, meetings, loans..."
-              width="100%"
+              width="auto%"
               variant="navbar"
               onSearch={performChamaSearch}
             />
@@ -277,7 +281,7 @@ const ChamaContent = () => {
             <Tooltip title="Notifications">
               <IconButton
                 color="inherit"
-                onClick={handleNotificationsClick}
+              onClick= {handleNotificationsClick}
               >
                 <Badge badgeContent={notifications.length} color="error">
                   <Notifications />

@@ -91,13 +91,13 @@ const BillingPage = () => {
     {
       id: 1,
       type: 'M-PESA',
-      number: '254712345678',
+      number: '+254** **** ***',
       primary: true,
     },
     {
       id: 2,
       type: 'Bank Account',
-      number: '**** 1234',
+      number: '**** **** ****',
       bank: 'KCB Bank',
       primary: false,
     },
@@ -332,8 +332,8 @@ const BillingPage = () => {
                   <FormControl fullWidth>
                     <InputLabel>Payment Method</InputLabel>
                     <Select>
-                      <MenuItem value="mpesa">M-PESA (**** 5678)</MenuItem>
-                      <MenuItem value="bank">KCB Bank (**** 1234)</MenuItem>
+                      <MenuItem value="mpesa">M-PESA (+254** *** ***)</MenuItem>
+                      <MenuItem value="bank">KCB Bank (**** **** ****)</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>

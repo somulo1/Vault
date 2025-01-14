@@ -51,25 +51,26 @@ const ReportsPage = () => {
 
   return (
     <Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mb: 1 }}>
         <Typography variant="h4" component="h1">
           Reports & Analytics
         </Typography>
-        <Button
+          </Box>
+    <Box>
+    <Button
           variant="contained"
           startIcon={<DownloadIcon />}
           sx={{ bgcolor: '#1a237e' }}
         >
           Export Report
         </Button>
-      </Box>
-
+    </Box>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={9}>
           <Card sx={{ mb: 3 }}>
             <CardContent>
               <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={9} md={4}>
                   <FormControl fullWidth>
                     <InputLabel>Report Type</InputLabel>
                     <Select
@@ -83,7 +84,7 @@ const ReportsPage = () => {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} md={6}>
+                <Grid item xs={9} md={4}>
                   <FormControl fullWidth>
                     <InputLabel>Time Range</InputLabel>
                     <Select
@@ -105,7 +106,7 @@ const ReportsPage = () => {
 
         {reportType === 'financial' && (
           <>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={9} md={4}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -117,7 +118,7 @@ const ReportsPage = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={9} md={4}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -129,7 +130,7 @@ const ReportsPage = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={9} md={4}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -141,7 +142,7 @@ const ReportsPage = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={9}>
               <Card>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
@@ -176,7 +177,7 @@ const ReportsPage = () => {
         )}
 
         {reportType === 'activity' && (
-          <Grid item xs={12}>
+          <Grid item xs={9}>
             <TableContainer component={Paper}>
               <Table>
                 <TableHead>

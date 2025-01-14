@@ -24,6 +24,7 @@ import WelfarePage from './pages/Chamas/ChamaDashboard/Welfare/WelfarePage'
 import GoalsPage from './pages/Chamas/ChamaDashboard/Goals/GoalsPage'
 import NotificationsPage from './pages/Chamas/ChamaDashboard/Notifications/NotificationsPage'
 import BillingPage from './pages/Chamas/ChamaDashboard/Billing/BillingPage'
+import NewModule from './pages/Chamas/ChamaDashboard/NewModule/NewModule';
 import ChamaSettingsPage from './pages/Chamas/ChamaDashboard/Settings/SettingsPage'
 import './App.css'
 
@@ -72,6 +73,7 @@ function App() {
               <Route path="goals" element={<GoalsPage />} />
               <Route path="notifications" element={<NotificationsPage />} />
               <Route path="billing" element={<BillingPage />} />
+              <Route path="NewModule" element={<NewModule />} />
               <Route path="settings" element={<ChamaSettingsPage />} />
             </Route>
           </Routes>

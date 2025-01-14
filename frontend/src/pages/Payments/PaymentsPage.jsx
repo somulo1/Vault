@@ -40,12 +40,14 @@ const PaymentsPage = () => {
   };
 
   return (
-    <Box>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
+    <Box >
+      <Box  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography variant="h4" component="h1">
           Payments
         </Typography>
-        <Button
+       
+      </Box>
+ <Button
           variant="contained"
           startIcon={<AddIcon />}
           onClick={handleNewPayment}
@@ -53,10 +55,8 @@ const PaymentsPage = () => {
         >
           New Payment
         </Button>
-      </Box>
-
       <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={8} md={4}>
           <Card sx={{ bgcolor: '#e3f2fd' }}>
             <CardContent>
               <Typography variant="h6">Total Payments</Typography>
@@ -66,7 +66,7 @@ const PaymentsPage = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={8} md={4}>
           <Card sx={{ bgcolor: '#e3f2fd' }}>
             <CardContent>
               <Typography variant="h6">Pending Payments</Typography>
@@ -79,7 +79,7 @@ const PaymentsPage = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={8} md={4}>
           <Card sx={{ bgcolor: '#e3f2fd' }}>
             <CardContent>
               <Typography variant="h6">Completed Payments</Typography>
@@ -93,7 +93,7 @@ const PaymentsPage = () => {
           </Card>
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={8}>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -112,7 +112,7 @@ const PaymentsPage = () => {
                     <TableCell>{transaction.type}</TableCell>
                     <TableCell>KES {transaction.amount.toLocaleString()}</TableCell>
                     <TableCell>{transaction.status}</TableCell>
-                    <TableCell>{transaction.reference}</TableCell>
+                     <TableCell>{transaction.reference}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -125,7 +125,7 @@ const PaymentsPage = () => {
         <DialogTitle>New Payment</DialogTitle>
         <DialogContent>
           <Box sx={{ mt: 2 }}>
-            <FormControl fullWidth sx={{ mb: 2 }}>
+            <FormControl widthauto sx={{ mb: 2 }}>
               <InputLabel>Payment Type</InputLabel>
               <Select
                 value={paymentType}
