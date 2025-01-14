@@ -40,7 +40,7 @@ const PaymentsPage = () => {
   };
 
   return (
-    <Box >
+    <Box sx={{ overflow: 'hidden' }}>
       <Box  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Typography variant="h4" component="h1">
           Payments
@@ -55,7 +55,7 @@ const PaymentsPage = () => {
         >
           New Payment
         </Button>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} sx={{ maxWidth: '1200px', margin: '0 auto', mx: 'auto' }}>
         <Grid item xs={8} md={4}>
           <Card sx={{ bgcolor: '#e3f2fd' }}>
             <CardContent>
@@ -94,7 +94,7 @@ const PaymentsPage = () => {
         </Grid>
 
         <Grid item xs={8}>
-          <TableContainer component={Paper}>
+          <TableContainer component={Paper} sx={{ overflowX: { xs: 'auto', sm: 'none' } }}>
             <Table>
               <TableHead>
                 <TableRow>

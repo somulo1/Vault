@@ -126,7 +126,7 @@ const LoansPage = () => {
   const renderLoanStats = () => (
     <Grid container spacing={3} sx={{ mb: 3 }}>
       <Grid item xs={5} md={3}>
-        <Card>
+        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Total Vault Loans
@@ -138,7 +138,7 @@ const LoansPage = () => {
         </Card>
       </Grid>
       <Grid item xs={5} md={3}>
-        <Card>
+        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Active Vault Loans
@@ -150,7 +150,7 @@ const LoansPage = () => {
         </Card>
       </Grid>
       <Grid item xs={5} md={3}>
-        <Card>
+        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Defaulted Vault Loans
@@ -162,7 +162,7 @@ const LoansPage = () => {
         </Card>
       </Grid>
       <Grid item xs={5} md={3}>
-        <Card>
+        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
               Total Completed Loans

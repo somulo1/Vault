@@ -113,7 +113,7 @@ const MeetingsPage = () => {
 
   const renderMeetingForm = () => (
     <Box sx={{ mt: 2 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ maxWidth: '100%', margin: '0 auto' }}>
         <Grid item xs={12}>
           <TextField
             fullWidth
@@ -197,7 +197,7 @@ const MeetingsPage = () => {
   );
 
   const renderUpcomingMeetings = () => (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ overflowX: 'auto', overflowY: 'auto', maxWidth: '100%', maxHeight: '500px' }}>
       <Table>
         <TableHead>
           <TableRow>
@@ -318,7 +318,7 @@ const MeetingsPage = () => {
   );
 
   return (
-    <Box>
+    <Box sx={{ overflowX: 'hidden', padding: { xs: 1, sm: 2 } }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
         <Typography variant="h4">
           Meetings
@@ -348,6 +348,7 @@ const MeetingsPage = () => {
         onClose={() => setOpenNewMeeting(false)}
         maxWidth="md"
         fullWidth
+        sx={{ padding: { xs: 2, sm: 3 } }}
       >
         <DialogTitle>
           {selectedMeeting ? 'Edit Meeting' : 'Schedule New Meeting'}
@@ -398,6 +399,7 @@ const MeetingsPage = () => {
         onClose={() => setOpenMinutes(false)}
         maxWidth="md"
         fullWidth
+        sx={{ padding: { xs: 2, sm: 3 } }}
       >
         <DialogTitle>Meeting Minutes</DialogTitle>
         <DialogContent>

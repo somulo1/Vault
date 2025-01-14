@@ -88,8 +88,8 @@ const ChamaHome = () => {
 
       {/* Quick Stats */}
       <Grid container spacing={3} sx={{ mb: 3 }}>
-        <Grid item xs={12} md={3}>
-          <Card>
+        <Grid item xs={11} md={3}>
+          <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                 <Group sx={{ color: 'primary.main', mr: 1 }} />
@@ -102,8 +102,8 @@ const ChamaHome = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <Card>
+        <Grid item xs={11} md={3}>
+          <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                 <MonetizationOn sx={{ color: 'primary.main', mr: 1 }} />
@@ -118,8 +118,8 @@ const ChamaHome = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <Card>
+        <Grid item xs={11} md={3}>
+          <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                 <TrendingUp sx={{ color: 'primary.main', mr: 1 }} />
@@ -134,8 +134,8 @@ const ChamaHome = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} md={3}>
-          <Card>
+        <Grid item xs={11} md={3}>
+          <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                 <Event sx={{ color: 'primary.main', mr: 1 }} />

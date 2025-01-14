@@ -107,7 +107,7 @@ const ReportsPage = () => {
         {reportType === 'financial' && (
           <>
             <Grid item xs={9} md={4}>
-              <Card>
+              <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     Total Contributions
@@ -119,7 +119,7 @@ const ReportsPage = () => {
               </Card>
             </Grid>
             <Grid item xs={9} md={4}>
-              <Card>
+              <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     Total Loans
@@ -131,7 +131,7 @@ const ReportsPage = () => {
               </Card>
             </Grid>
             <Grid item xs={9} md={4}>
-              <Card>
+              <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
                 <CardContent>
                   <Typography variant="h6" gutterBottom>
                     Total Investments

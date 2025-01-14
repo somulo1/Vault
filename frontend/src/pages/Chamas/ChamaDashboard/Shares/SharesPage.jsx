@@ -125,8 +125,8 @@ const SharesPage = () => {
 
   const renderShareStats = () => (
     <Grid container spacing={3} sx={{ mb: 3 }}>
-      <Grid item xs={12} md={3}>
-        <Card>
+      <Grid item xs={5} md={3}>
+        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Loop sx={{ color: 'primary.main', mr: 1 }} />
@@ -150,8 +150,8 @@ const SharesPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} md={3}>
-        <Card>
+      <Grid item xs={5} md={3}>
+        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Person sx={{ color: 'primary.main', mr: 1 }} />
@@ -163,8 +163,8 @@ const SharesPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} md={3}>
-        <Card>
+      <Grid item xs={5} md={3}>
+        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Payment sx={{ color: 'primary.main', mr: 1 }} />
@@ -176,8 +176,8 @@ const SharesPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} md={3}>
-        <Card>
+      <Grid item xs={5} md={3}>
+        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Check sx={{ color: 'primary.main', mr: 1 }} />

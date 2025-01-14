@@ -59,8 +59,6 @@ import LanguageDialog from '../../../components/common/LanguageDialog';
 import HelpDialog from '../../../components/common/HelpDialog';
 import { useChama, ChamaProvider } from '../../../context/ChamaContext';
 
-const drawerWidth = 240;
-
 const ChamaContent = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -154,11 +152,13 @@ const ChamaContent = () => {
     { id: 1, text: 'New loan request from John', time: '5 minutes ago' },
     { id: 2, text: 'Meeting scheduled for tomorrow', time: '1 hour ago' },
     { id: 3, text: 'Payment reminder: Monthly contribution', time: '2 hours ago' },
-    { id: 4, text: 'Subscription reminder: Monthly subscription is due 🚩', time: '2 hours ago' },
+    { id: 4, text: 'Subscription reminder: Monthly subscription is due ', time: '2 hours ago' },
   ];
 
   // Mock chama data - replace with actual data
   const chamaName = "Intel Kwote";
+
+  const drawerWidth = isMobile ? '100%' : 240;
 
   const drawer = (
     <Box>
