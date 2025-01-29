@@ -82,7 +82,7 @@ const ApplyLoanMenu = () => {
         <ListItemIcon>
           <AttachMoney />
         </ListItemIcon>
-        <ListItemText primary="Apply Loan" />
+        <ListItemText primary="Get Vault Loan" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
