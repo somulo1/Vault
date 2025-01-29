@@ -50,6 +50,7 @@ import {
   NavigateNext,
   ArrowBack,
   Dashboard,
+  AccountBalanceWallet,
 } from '@mui/icons-material';
 import { useNavigate, useLocation, Outlet, useParams } from 'react-router-dom';
 import SearchBar from '../../../components/common/SearchBar';
@@ -58,6 +59,8 @@ import ProfileDialog from '../../../components/common/ProfileDialog';
 import LanguageDialog from '../../../components/common/LanguageDialog';
 import HelpDialog from '../../../components/common/HelpDialog';
 import { useChama, ChamaProvider } from '../../../context/ChamaContext';
+
+const drawerWidth = 240;
 
 const ChamaContent = () => {
   const theme = useTheme();
@@ -105,8 +108,8 @@ const ChamaContent = () => {
     setDarkMode(!darkMode);
   };
 
-  const handleBackToChamas = () => {
-    navigate('/chamas');
+  const handleBackToHome = () => {
+    navigate('/dashboard');
   };
 
   const handleViewAllNotifications = () => {
@@ -132,39 +135,35 @@ const ChamaContent = () => {
   };
 
   const menuItems = [
-    { text: 'Home', icon: <Dashboard />, path: `/chama/${chamaId}/home` },
-    { text: 'Membership', icon: <Group />, path: `/chama/${chamaId}/membership` },
-    { text: 'Meetings', icon: <Event />, path: `/chama/${chamaId}/meetings` },
-    { text: 'Accounts', icon: <AccountBalance />, path: `/chama/${chamaId}/accounts` },
-    { text: 'Vault Inua Loans', icon: <MonetizationOn />, path: `/chama/${chamaId}/loans` },
-    { text: 'Soft Loans', icon: <MonetizationOn />, path: `/chama/${chamaId}/soft-loans` },
-    { text: 'Merry Go Round', icon: <Loop />, path: `/chama/${chamaId}/merry-go-round` },
-    { text: 'Shares', icon: <Share />, path: `/chama/${chamaId}/shares` },
-    { text: 'Welfare', icon: <Favorite />, path: `/chama/${chamaId}/welfare` },
-    { text: 'Goals', icon: <Flag />, path: `/chama/${chamaId}/goals` },
-    { text: 'Billing', icon: <MonetizationOn />, path: `/chama/${chamaId}/billing` },
-    {text: 'Add Chama Module', icon: <Group />, path: `/chama/${chamaId}/NewModule` },
-    { text: 'Settings', icon: <Settings />, path: `/chama/${chamaId}/settings` },
+    { text: 'Home', icon: <Dashboard />, path: `/ChamaDashboard/${chamaId}/home` },
+    { text: 'Membership', icon: <Group />, path: `/ChamaDashboard/${chamaId}/membership` },
+    { text: 'Meetings', icon: <Event />, path: `/ChamaDashboard/${chamaId}/meetings` },
+    { text: 'Accounts', icon: <AccountBalance />, path: `/ChamaDashboard/${chamaId}/accounts` },
+    { text: 'Vault Inua Loans', icon: <MonetizationOn />, path: `/ChamaDashboard/${chamaId}/loans` },
+    { text: 'Soft Loans', icon: <MonetizationOn />, path: `/ChamaDashboard/${chamaId}/soft-loans` },
+    { text: 'Merry Go Round', icon: <Loop />, path: `/ChamaDashboard/${chamaId}/merry-go-round` },
+    { text: 'Shares', icon: <Share />, path: `/ChamaDashboard/${chamaId}/shares` },
+    { text: 'Welfare', icon: <Favorite />, path: `/ChamaDashboard/${chamaId}/welfare` },
+    { text: 'Goals', icon: <Flag />, path: `/ChamaDashboard/${chamaId}/goals` },
+    { text: 'Open Vault', icon: <AccountBalanceWallet />, path: `/ChamaDashboard/${chamaId}/vault-manager` },
+    { text: 'Billing', icon: <MonetizationOn />, path: `/ChamaDashboard/${chamaId}/billing` },
+    { text: 'Settings', icon: <Settings />, path: `/ChamaDashboard/${chamaId}/settings` },
   ];
 
   const notifications = [
-   
     { id: 1, text: 'New loan request from John', time: '5 minutes ago' },
     { id: 2, text: 'Meeting scheduled for tomorrow', time: '1 hour ago' },
     { id: 3, text: 'Payment reminder: Monthly contribution', time: '2 hours ago' },
-    { id: 4, text: 'Subscription reminder: Monthly subscription is due ', time: '2 hours ago' },
   ];
 
   // Mock chama data - replace with actual data
   const chamaName = "Intel Kwote";
 
-  const drawerWidth = isMobile ? '100%' : 240;
-
   const drawer = (
     <Box>
       <Toolbar>
         <Typography variant="h6" noWrap component="div">
-          ChamaVault
+          {chamaName}
         </Typography>
       </Toolbar>
       <Divider />
@@ -212,10 +211,10 @@ const ChamaContent = () => {
 
           <IconButton 
             color="inherit" 
-            onClick={handleBackToChamas}
+            onClick={handleBackToHome}
             sx={{ mr: 2 }}
           >
-            <Home></Home>
+            <Home />
           </IconButton>
 
           <Breadcrumbs
@@ -229,10 +228,10 @@ const ChamaContent = () => {
           >
             <Link
               color="inherit"
-              href="/chamas"
+              href="/dashboard/chamas"
               onClick={(e) => {
                 e.preventDefault();
-                navigate('/chamas');
+                navigate('/dashboard/chamas');
               }}
               sx={{ 
                 color: 'white',
@@ -240,7 +239,7 @@ const ChamaContent = () => {
                 '&:hover': { textDecoration: 'underline' }
               }}
             >
-              Back
+              My Chamas
             </Link>
             <Typography color="white">{chamaName}</Typography>
           </Breadcrumbs>
@@ -251,7 +250,7 @@ const ChamaContent = () => {
           }}>
             <SearchBar
               placeholder="Search members, meetings, loans..."
-              width="auto%"
+              width="100%"
               variant="navbar"
               onSearch={performChamaSearch}
             />
@@ -281,7 +280,7 @@ const ChamaContent = () => {
             <Tooltip title="Notifications">
               <IconButton
                 color="inherit"
-              onClick= {handleNotificationsClick}
+                onClick={handleNotificationsClick}
               >
                 <Badge badgeContent={notifications.length} color="error">
                   <Notifications />

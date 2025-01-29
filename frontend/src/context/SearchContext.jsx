@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import { Group } from '@mui/icons-material';
 
 const SearchContext = createContext();
 
@@ -18,8 +19,8 @@ export const SearchProvider = ({ children }) => {
   // Mock data for demonstration - replace with actual API calls
   const mockData = {
     chamas: [
-      { id: 1, name: 'Intel kwote', type: 'chama' },
-      { id: 2, name: 'Savings Group B', type: 'chama' },
+      { id: 1, name: 'Intel kwote', type: 'chama', members: 10 },
+      { id: 2, name: 'Savings Group B', type: 'chama', members: 20 },
     ],
     members: [
       { id: 1, name: 'John Doe', type: 'member' },
@@ -55,9 +56,10 @@ export const SearchProvider = ({ children }) => {
         ...mockData.chamas
           .filter(chama => chama.name.toLowerCase().includes(searchTermLower))
           .map(chama => ({
-            ...chama,
-            icon: '🏢',
-            url: `/chama/${chama.id}/home`,
+            title: chama.name,
+            description: `${chama.members} members • ${chama.type}`,
+            icon: <Group />,
+            url: `/ChamaDashboard/${chama.id}/home`,
           })),
         ...mockData.members
           .filter(member => member.name.toLowerCase().includes(searchTermLower))

@@ -118,8 +118,8 @@ const AccountsPage = () => {
 
   const renderAccountStats = () => (
     <Grid container spacing={3} sx={{ mb: 3 }}>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
+      <Grid item xs={12} sm={6} md={3}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <AccountBalance sx={{ color: 'primary.main', mr: 1 }} />
@@ -131,8 +131,8 @@ const AccountsPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
+      <Grid item xs={12} sm={6} md={3}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <TrendingUp sx={{ color: 'success.main', mr: 1 }} />
@@ -144,8 +144,8 @@ const AccountsPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
+      <Grid item xs={12} sm={6} md={3}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <TrendingDown sx={{ color: 'error.main', mr: 1 }} />
@@ -157,8 +157,8 @@ const AccountsPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} sm={6} md={3}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Payment sx={{ color: 'warning.main', mr: 1 }} />

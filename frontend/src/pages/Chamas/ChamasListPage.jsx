@@ -117,7 +117,7 @@ const ChamasListPage = () => {
   };
 
   const handleChamaClick = (chamaId) => {
-    navigate(`/chama/${chamaId}/home`);
+    navigate(`/ChamaDashboard/${chamaId}/home`);
   };
 
   const handleCreateChama = () => {
@@ -147,49 +147,54 @@ const ChamasListPage = () => {
   );
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ padding: 2 }}>
       {/* Header */}
-      <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 2 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          My Chamas
-        </Typography>
-        <Button
+      <Grid container spacing={2} sx={{ mb: 4 }}>
+        <Grid item xs={12} sm={6}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            My Chamas
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={6} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button
             variant="contained"
-            fullWidth={isMobile}
             startIcon={<AddIcon />}
             onClick={handleCreateChama}
             sx={{ 
               bgcolor: '#1a237e',
-              maxWidth: { xs: '100%', sm: 'auto' }
             }}
           >
             Create New Chama
           </Button>
-      </Box>
+        </Grid>
+      </Grid>
 
       {/* Search and Filters */}
-      <Box sx={{ mb: 4, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-        <TextField
-          placeholder="Search chamas..."
-          value={searchTerm}
-          onChange={handleSearch}
-          variant="outlined"
-          size="small"
-          sx={{ flexGrow: 1, maxWidth: 300 }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Box sx={{ display: 'flex', gap: 1 }}>
+      <Grid container spacing={2} sx={{ mb: 4 }}>
+        <Grid item xs={12} sm={6} md={8}>
+          <TextField
+            placeholder="Search chamas..."
+            value={searchTerm}
+            onChange={handleSearch}
+            variant="outlined"
+            size="small"
+            sx={{ flexGrow: 1 }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
             startIcon={<SortIcon />}
             onClick={handleSortClick}
             variant="outlined"
             size="small"
+            sx={{ mr: 1 }}
           >
             Sort
           </Button>
@@ -201,8 +206,8 @@ const ChamasListPage = () => {
           >
             Filter
           </Button>
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
 
       {/* Chamas Grid */}
       <Grid container spacing={3}>

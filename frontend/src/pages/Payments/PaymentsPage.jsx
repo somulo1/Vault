@@ -40,14 +40,12 @@ const PaymentsPage = () => {
   };
 
   return (
-    <Box sx={{ overflow: 'hidden' }}>
-      <Box  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    <Box sx={{ padding: 4 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
         <Typography variant="h4" component="h1">
           Payments
         </Typography>
-       
-      </Box>
- <Button
+        <Button
           variant="contained"
           startIcon={<AddIcon />}
           onClick={handleNewPayment}
@@ -55,9 +53,11 @@ const PaymentsPage = () => {
         >
           New Payment
         </Button>
-      <Grid container spacing={3} sx={{ maxWidth: '1200px', margin: '0 auto', mx: 'auto' }}>
-        <Grid item xs={8} md={4}>
-          <Card sx={{ bgcolor: '#e3f2fd' }}>
+      </Box>
+
+      <Grid container spacing={3} justifyContent="center">
+        <Grid item xs={12} sm={6} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Card sx={{ bgcolor: '#e3f2fd', mb: 3, p: 2 }}>
             <CardContent>
               <Typography variant="h6">Total Payments</Typography>
               <Typography variant="h4">
@@ -66,8 +66,8 @@ const PaymentsPage = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={8} md={4}>
-          <Card sx={{ bgcolor: '#e3f2fd' }}>
+        <Grid item xs={12} sm={6} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Card sx={{ bgcolor: '#e3f2fd', mb: 3, p: 2 }}>
             <CardContent>
               <Typography variant="h6">Pending Payments</Typography>
               <Typography variant="h4">
@@ -79,8 +79,8 @@ const PaymentsPage = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={8} md={4}>
-          <Card sx={{ bgcolor: '#e3f2fd' }}>
+        <Grid item xs={12} sm={6} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Card sx={{ bgcolor: '#e3f2fd', mb: 3, p: 2 }}>
             <CardContent>
               <Typography variant="h6">Completed Payments</Typography>
               <Typography variant="h4">
@@ -92,76 +92,88 @@ const PaymentsPage = () => {
             </CardContent>
           </Card>
         </Grid>
+      </Grid>
 
-        <Grid item xs={8}>
-          <TableContainer component={Paper} sx={{ overflowX: { xs: 'auto', sm: 'none' } }}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Type</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Reference</TableCell>
+      <Grid item xs={12}>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Date</TableCell>
+                <TableCell>Type</TableCell>
+                <TableCell>Amount</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Reference</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {transactions.map((transaction) => (
+                <TableRow key={transaction.id}>
+                  <TableCell>{transaction.date}</TableCell>
+                  <TableCell>{transaction.type}</TableCell>
+                  <TableCell>KES {transaction.amount.toLocaleString()}</TableCell>
+                  <TableCell>{transaction.status}</TableCell>
+                  <TableCell>{transaction.reference}</TableCell>
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {transactions.map((transaction) => (
-                  <TableRow key={transaction.id}>
-                    <TableCell>{transaction.date}</TableCell>
-                    <TableCell>{transaction.type}</TableCell>
-                    <TableCell>KES {transaction.amount.toLocaleString()}</TableCell>
-                    <TableCell>{transaction.status}</TableCell>
-                     <TableCell>{transaction.reference}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Grid>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Grid>
 
       <Dialog open={openPaymentDialog} onClose={() => setOpenPaymentDialog(false)}>
         <DialogTitle>New Payment</DialogTitle>
         <DialogContent>
-          <Box sx={{ mt: 2 }}>
-            <FormControl widthauto sx={{ mb: 2 }}>
-              <InputLabel>Payment Type</InputLabel>
-              <Select
-                value={paymentType}
-                label="Payment Type"
-                onChange={(e) => setPaymentType(e.target.value)}
-              >
-                <MenuItem value="mpesa">M-Pesa</MenuItem>
-                <MenuItem value="bank">Bank Transfer</MenuItem>
-              </Select>
-            </FormControl>
-            <TextField
-              fullWidth
-              label="Amount"
-              type="number"
-              sx={{ mb: 2 }}
-            />
-            {paymentType === 'mpesa' ? (
-              <TextField
-                fullWidth
-                label="Phone Number"
-                sx={{ mb: 2 }}
-              />
-            ) : (
-              <>
+          <Box sx={{ mt: 2, overflow: 'hidden' }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <FormControl fullWidth sx={{ mb: 2 }}>
+                  <InputLabel>Payment Type</InputLabel>
+                  <Select
+                    value={paymentType}
+                    label="Payment Type"
+                    onChange={(e) => setPaymentType(e.target.value)}
+                  >
+                    <MenuItem value="mpesa">M-Pesa</MenuItem>
+                    <MenuItem value="bank">Bank Transfer</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  label="Bank Name"
+                  label="Amount"
+                  type="number"
                   sx={{ mb: 2 }}
                 />
-                <TextField
-                  fullWidth
-                  label="Account Number"
-                  sx={{ mb: 2 }}
-                />
-              </>
-            )}
+              </Grid>
+              {paymentType === 'mpesa' ? (
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Phone Number"
+                    sx={{ mb: 2 }}
+                  />
+                </Grid>
+              ) : (
+                <>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Bank Name"
+                      sx={{ mb: 2 }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      fullWidth
+                      label="Account Number"
+                      sx={{ mb: 2 }}
+                    />
+                  </Grid>
+                </>
+              )}
+            </Grid>
           </Box>
         </DialogContent>
         <DialogActions>

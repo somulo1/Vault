@@ -156,7 +156,7 @@ const MerryGoRoundPage = () => {
         </Card>
       </Grid>
       <Grid item xs={12} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Payment sx={{ color: 'success.main', mr: 1 }} />

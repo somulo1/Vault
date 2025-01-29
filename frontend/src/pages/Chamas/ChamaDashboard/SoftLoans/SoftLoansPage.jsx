@@ -26,26 +26,19 @@ import {
   MenuItem,
   Tab,
   Tabs,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
   Avatar,
-  Stepper,
-  Step,
-  StepLabel,
   LinearProgress,
+  Alert,
 } from '@mui/material';
 import {
   Add as AddIcon,
   Edit as EditIcon,
   Delete as DeleteIcon,
   MonetizationOn,
-  Assignment,
-  AccountBalance,
+  Person,
   CalendarToday,
   Assessment,
-  Person,
+  Warning,
 } from '@mui/icons-material';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
@@ -56,52 +49,47 @@ const SoftLoansPage = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [openNewLoan, setOpenNewLoan] = useState(false);
   const [selectedLoan, setSelectedLoan] = useState(null);
-  const [activeStep, setActiveStep] = useState(0);
-  const [loanDetails, setLoanDetails] = useState({
-    amount: '',
-    purpose: '',
-    duration: '',
-    startDate: new Date(),
-    guarantors: [],
-    collateral: '',
-  });
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   // Mock data - replace with API calls
-  const loans = [
+  const softLoanStats = {
+    totalLoans: 100000,
+    activeLoans: 75000,
+    defaultedLoans: 5000,
+    availableFunds: 25000,
+    maxLoanAmount: 10000,
+    interestRate: 5,
+    maxDuration: 3, // months
+  };
+
+  const softLoans = [
     {
       id: 1,
       member: 'John Doe',
-      amount: 6000,
-      purpose: 'Business Expansion',
-      duration: '12 months',
-      interestRate: 10,
+      amount: 8000,
+      purpose: 'Emergency Medical',
+      duration: '2 months',
+      interestRate: 5,
       startDate: '2025-01-01',
       status: 'Active',
-      remainingAmount: 4500,
+      remainingAmount: 6000,
       nextPayment: '2025-02-01',
-      guarantors: ['Jane Smith', 'Bob Wilson'],
+      urgency: 'High',
     },
     {
       id: 2,
       member: 'Jane Smith',
-      amount: 3000,
-      purpose: 'Education',
-      duration: '6 months',
-      interestRate: 8,
-      startDate: '2025-01-05',
+      amount: 5000,
+      purpose: 'School Fees',
+      duration: '1 month',
+      interestRate: 5,
+      startDate: '2025-01-10',
       status: 'Pending Approval',
-      remainingAmount: 3000,
+      remainingAmount: 5000,
       nextPayment: null,
-      guarantors: ['John Doe', 'Alice Brown'],
+      urgency: 'Medium',
     },
   ];
-
-  const loanStats = {
-    totalSoftLoans: 50300,
-    activeSofttLoans: 35000,
-    defaultedSofttLoans: 20000,
-    CompletedSoftloans: 6,
-  };
 
   const handleTabChange = (event, newValue) => {
     setCurrentTab(newValue);
@@ -109,69 +97,59 @@ const SoftLoansPage = () => {
 
   const handleNewLoan = () => {
     setSelectedLoan(null);
-    setActiveStep(0);
     setOpenNewLoan(true);
   };
 
-  const handleNext = () => {
-    setActiveStep((prevStep) => prevStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevStep) => prevStep - 1);
-  };
-
-  const steps = ['Loan Details', 'Guarantors', 'Collateral', 'Review'];
-
-  const renderLoanStats = () => (
+  const renderSoftLoanStats = () => (
     <Grid container spacing={3} sx={{ mb: 3 }}>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Total Soft Loans
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <MonetizationOn sx={{ color: 'primary.main', mr: 1 }} />
+              <Typography color="textSecondary">Total Soft Loans</Typography>
+            </Box>
             <Typography variant="h4">
-              KES {loanStats.totalSoftLoans.toLocaleString()}
+              KES {softLoanStats.totalLoans.toLocaleString()}
             </Typography>
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Active Soft Loans
-            </Typography>
-            <Typography variant="h4">
-              KES {loanStats.activeSofttLoans.toLocaleString()}
-            </Typography>
-            </CardContent>
-        </Card>
-      </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
-          <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Defaulted soft Loans
-            </Typography>
-            <Typography variant="h4" color="error">
-              KES {loanStats.defaultedSofttLoans.toLocaleString()}
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <Assessment sx={{ color: 'success.main', mr: 1 }} />
+              <Typography color="textSecondary">Active Loans</Typography>
+            </Box>
+            <Typography variant="h4" color="success.main">
+              KES {softLoanStats.activeLoans.toLocaleString()}
             </Typography>
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
-            <Typography color="textSecondary" gutterBottom>
-              Total Completed Loans
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <Warning sx={{ color: 'error.main', mr: 1 }} />
+              <Typography color="textSecondary">Defaulted Loans</Typography>
+            </Box>
+            <Typography variant="h4" color="error.main">
+              KES {softLoanStats.defaultedLoans.toLocaleString()}
             </Typography>
-            <Typography variant="h4" color="success">
-               {loanStats.CompletedSoftloans.toLocaleString()}
-            </Typography>
-            <Typography variant="h5">
-              Congrats 🎇
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12} md={3}>
+        <Card>
+          <CardContent>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <MonetizationOn sx={{ color: 'info.main', mr: 1 }} />
+              <Typography color="textSecondary">Available Funds</Typography>
+            </Box>
+            <Typography variant="h4" color="info.main">
+              KES {softLoanStats.availableFunds.toLocaleString()}
             </Typography>
           </CardContent>
         </Card>
@@ -179,170 +157,93 @@ const SoftLoansPage = () => {
     </Grid>
   );
 
-  const renderLoanForm = () => {
-    switch (activeStep) {
-      case 0:
-        return (
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Loan Amount"
-                type="number"
-                value={loanDetails.amount}
-                onChange={(e) => setLoanDetails({ ...loanDetails, amount: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <FormControl fullWidth>
-                <InputLabel>Duration</InputLabel>
-                <Select
-                  value={loanDetails.duration}
-                  onChange={(e) => setLoanDetails({ ...loanDetails, duration: e.target.value })}
-                >
-                  <MenuItem value="3">3 months</MenuItem>
-                  <MenuItem value="6">6 months</MenuItem>
-                  <MenuItem value="12">12 months</MenuItem>
-                  <MenuItem value="24">24 months</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Purpose"
-                multiline
-                rows={3}
-                value={loanDetails.purpose}
-                onChange={(e) => setLoanDetails({ ...loanDetails, purpose: e.target.value })}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
-                  label="Start Date"
-                  value={loanDetails.startDate}
-                  onChange={(newValue) => setLoanDetails({ ...loanDetails, startDate: newValue })}
-                  renderInput={(params) => <TextField {...params} fullWidth />}
-                />
-              </LocalizationProvider>
-            </Grid>
-          </Grid>
-        );
-      case 1:
-        return (
-          <Box>
-            <Typography variant="subtitle1" gutterBottom>
-              Select Guarantors
-            </Typography>
-            <List>
-              {['Jane Smith', 'Bob Wilson', 'Alice Brown'].map((member) => (
-                <ListItem key={member}>
-                  <ListItemIcon>
-                    <Avatar>{member[0]}</Avatar>
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={member}
-                    secondary="Available as guarantor"
-                  />
-                  <Button
-                    variant="outlined"
-                    size="small"
-                    onClick={() => {
-                      const newGuarantors = [...loanDetails.guarantors];
-                      if (newGuarantors.includes(member)) {
-                        newGuarantors.splice(newGuarantors.indexOf(member), 1);
-                      } else {
-                        newGuarantors.push(member);
-                      }
-                      setLoanDetails({ ...loanDetails, guarantors: newGuarantors });
-                    }}
-                  >
-                    {loanDetails.guarantors.includes(member) ? 'Remove' : 'Add'}
-                  </Button>
-                </ListItem>
-              ))}
-            </List>
-          </Box>
-        );
-      case 2:
-        return (
-          <Box>
-            <Typography variant="subtitle1" gutterBottom>
-              Collateral Details
-            </Typography>
-            <TextField
-              fullWidth
-              multiline
-              rows={4}
-              label="Collateral Description"
-              value={loanDetails.collateral}
-              onChange={(e) => setLoanDetails({ ...loanDetails, collateral: e.target.value })}
-              placeholder="Describe the collateral in detail..."
+  const renderLoanForm = () => (
+    <Box sx={{ mt: 2 }}>
+      <Alert severity="info" sx={{ mb: 2 }}>
+        Maximum loan amount: KES {softLoanStats.maxLoanAmount.toLocaleString()}
+        <br />
+        Interest Rate: {softLoanStats.interestRate}% per month
+        <br />
+        Maximum Duration: {softLoanStats.maxDuration} months
+      </Alert>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <TextField
+            fullWidth
+            label="Loan Amount"
+            type="number"
+            inputProps={{
+              max: softLoanStats.maxLoanAmount,
+              min: 1000,
+            }}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <FormControl fullWidth>
+            <InputLabel>Duration</InputLabel>
+            <Select defaultValue={1}>
+              <MenuItem value={1}>1 month</MenuItem>
+              <MenuItem value={2}>2 months</MenuItem>
+              <MenuItem value={3}>3 months</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              label="Start Date"
+              value={selectedDate}
+              onChange={(newValue) => setSelectedDate(newValue)}
+              renderInput={(params) => <TextField {...params} fullWidth />}
             />
-          </Box>
-        );
-      case 3:
-        return (
-          <Box>
-            <Typography variant="h6" gutterBottom>
-              Loan Application Summary
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <Typography variant="subtitle2">Amount:</Typography>
-                <Typography>KES {Number(loanDetails.amount).toLocaleString()}</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="subtitle2">Duration:</Typography>
-                <Typography>{loanDetails.duration} months</Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="subtitle2">Purpose:</Typography>
-                <Typography>{loanDetails.purpose}</Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="subtitle2">Guarantors:</Typography>
-                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                  {loanDetails.guarantors.map((guarantor) => (
-                    <Chip key={guarantor} label={guarantor} />
-                  ))}
-                </Box>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="subtitle2">Collateral:</Typography>
-                <Typography>{loanDetails.collateral}</Typography>
-              </Grid>
-            </Grid>
-          </Box>
-        );
-      default:
-        return null;
-    }
-  };
+          </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <FormControl fullWidth>
+            <InputLabel>Urgency Level</InputLabel>
+            <Select defaultValue="medium">
+              <MenuItem value="low">Low</MenuItem>
+              <MenuItem value="medium">Medium</MenuItem>
+              <MenuItem value="high">High</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            label="Purpose"
+            multiline
+            rows={3}
+            placeholder="Explain the reason for the soft loan request..."
+          />
+        </Grid>
+      </Grid>
+    </Box>
+  );
 
   const renderLoans = () => (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Loan</TableCell>
+            <TableCell>Member</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Purpose</TableCell>
             <TableCell>Duration</TableCell>
             <TableCell>Start Date</TableCell>
             <TableCell>Status</TableCell>
+            <TableCell>Urgency</TableCell>
             <TableCell>Progress</TableCell>
-            <TableCell>Action</TableCell>
+            <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {loans.map((loan) => (
+          {softLoans.map((loan) => (
             <TableRow key={loan.id}>
               <TableCell>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <p>{loan.count}</p>
-                  {loan.id}
+                  <Avatar sx={{ mr: 1 }}>{loan.member[0]}</Avatar>
+                  {loan.member}
                 </Box>
               </TableCell>
               <TableCell>KES {loan.amount.toLocaleString()}</TableCell>
@@ -358,6 +259,19 @@ const SoftLoansPage = () => {
                       : loan.status === 'Pending Approval'
                       ? 'warning'
                       : 'error'
+                  }
+                  size="small"
+                />
+              </TableCell>
+              <TableCell>
+                <Chip
+                  label={loan.urgency}
+                  color={
+                    loan.urgency === 'High'
+                      ? 'error'
+                      : loan.urgency === 'Medium'
+                      ? 'warning'
+                      : 'success'
                   }
                   size="small"
                 />
@@ -410,11 +324,11 @@ const SoftLoansPage = () => {
           onClick={handleNewLoan}
           sx={{ bgcolor: '#1a237e' }}
         >
-          Reques Soft Loan
+          Request Soft Loan
         </Button>
       </Box>
 
-      {renderLoanStats()}
+      {renderSoftLoanStats()}
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
         <Tabs value={currentTab} onChange={handleTabChange}>
@@ -423,10 +337,10 @@ const SoftLoansPage = () => {
           <Tab label="Completed Loans" />
         </Tabs>
       </Box>
-      
+
       {renderLoans()}
 
-      {/* New Loan Application Dialog */}
+      {/* New Soft Loan Dialog */}
       <Dialog
         open={openNewLoan}
         onClose={() => setOpenNewLoan(false)}
@@ -434,41 +348,25 @@ const SoftLoansPage = () => {
         fullWidth
       >
         <DialogTitle>
-          {selectedLoan ? 'Edit Loan' : 'Soft Loan Application'}
+          {selectedLoan ? 'Edit Soft Loan' : 'Request Soft Loan'}
         </DialogTitle>
         <DialogContent>
-          <Box sx={{ mt: 2 }}>
-            <Stepper activeStep={activeStep} sx={{ mb: 4 }}>
-              {steps.map((label) => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-            {renderLoanForm()}
-          </Box>
+          {renderLoanForm()}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenNewLoan(false)}>
             Cancel
           </Button>
-          {activeStep > 0 && (
-            <Button onClick={handleBack}>
-              Back
-            </Button>
-          )}
           <Button
             variant="contained"
             sx={{ bgcolor: '#1a237e' }}
-            onClick={activeStep === steps.length - 1 ? () => setOpenNewLoan(false) : handleNext}
           >
-            {activeStep === steps.length - 1 ? 'Submit Application' : 'Next'}
+            {selectedLoan ? 'Save Changes' : 'Submit Request'}
           </Button>
         </DialogActions>
       </Dialog>
     </Box>
   );
 };
-
 
 export default SoftLoansPage;

@@ -51,7 +51,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { useParams } from 'react-router-dom';
 
-const LoansPage = () => {
+const VaultLoans = () => {
   const { chamaId } = useParams();
   const [currentTab, setCurrentTab] = useState(0);
   const [openNewLoan, setOpenNewLoan] = useState(false);
@@ -97,10 +97,10 @@ const LoansPage = () => {
   ];
 
   const loanStats = {
-    totalVaultLoans: 500000,
-    activeVaultLoans: 350000,
-    defaultedVaultLoans: 20000,
-    availableFunds: 3,
+    totalLoans: 500000,
+    activeLoans: 350000,
+    defaultedLoans: 20000,
+    availableFunds: 150000,
   };
 
   const handleTabChange = (event, newValue) => {
@@ -125,53 +125,50 @@ const LoansPage = () => {
 
   const renderLoanStats = () => (
     <Grid container spacing={3} sx={{ mb: 3 }}>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Total Vault Loans
+              Total Loans
             </Typography>
             <Typography variant="h4">
-              KES {loanStats.totalVaultLoans.toLocaleString()}
+              KES {loanStats.totalLoans.toLocaleString()}
             </Typography>
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Active Vault Loans
+              Active Loans
             </Typography>
             <Typography variant="h4">
-              KES {loanStats.activeVaultLoans.toLocaleString()}
+              KES {loanStats.activeLoans.toLocaleString()}
             </Typography>
-            </CardContent>
+          </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Defaulted Vault Loans
+              Defaulted Loans
             </Typography>
             <Typography variant="h4" color="error">
-              KES {loanStats.defaultedVaultLoans.toLocaleString()}
+              KES {loanStats.defaultedLoans.toLocaleString()}
             </Typography>
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
             <Typography color="textSecondary" gutterBottom>
-              Total Completed Loans
+              Available Funds
             </Typography>
             <Typography variant="h4" color="success">
-               {loanStats.availableFunds.toLocaleString()}
-            </Typography>
-            <Typography variant="h5">
-              Congrats 🎇
+              KES {loanStats.availableFunds.toLocaleString()}
             </Typography>
           </CardContent>
         </Card>
@@ -326,14 +323,14 @@ const LoansPage = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Loan</TableCell>
+            <TableCell>Member</TableCell>
             <TableCell>Amount</TableCell>
             <TableCell>Purpose</TableCell>
             <TableCell>Duration</TableCell>
             <TableCell>Start Date</TableCell>
             <TableCell>Status</TableCell>
             <TableCell>Progress</TableCell>
-            {/* <TableCell>Actions</TableCell> */}
+            <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -341,8 +338,8 @@ const LoansPage = () => {
             <TableRow key={loan.id}>
               <TableCell>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <p>{loan.count}</p>
-                  {loan.id}
+                  <Avatar sx={{ mr: 1 }}>{loan.member[0]}</Avatar>
+                  {loan.member}
                 </Box>
               </TableCell>
               <TableCell>KES {loan.amount.toLocaleString()}</TableCell>
@@ -377,7 +374,7 @@ const LoansPage = () => {
                   </Box>
                 </Box>
               </TableCell>
-              {/* <TableCell>
+              <TableCell>
                 <IconButton
                   color="primary"
                   onClick={() => {
@@ -390,7 +387,7 @@ const LoansPage = () => {
                 <IconButton color="primary">
                   <Assessment />
                 </IconButton>
-              </TableCell> */}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -410,7 +407,7 @@ const LoansPage = () => {
           onClick={handleNewLoan}
           sx={{ bgcolor: '#1a237e' }}
         >
-          Reques Vault Loan
+          Request Vault Loan
         </Button>
       </Box>
 
@@ -423,7 +420,7 @@ const LoansPage = () => {
           <Tab label="Completed Loans" />
         </Tabs>
       </Box>
-      
+
       {renderLoans()}
 
       {/* New Loan Application Dialog */}
@@ -470,4 +467,4 @@ const LoansPage = () => {
   );
 };
 
-export default LoansPage;
+export default VaultLoans;

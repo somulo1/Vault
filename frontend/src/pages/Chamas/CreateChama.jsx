@@ -95,20 +95,18 @@ const CreateChama = () => {
           onChange={(e) => setChamaRules(e.target.value)}
           sx={{ mb: 2 }}
         />
-           <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
-        <Button variant="auto" component="label" sx={{ mb: 2 }}>
-          Upload Icon
+        <Button variant="contained" component="label" sx={{ mb: 2 }}>
+          Upload Chama Icon
           <input
             type="file"
             hidden
             onChange={(e) => setChamaIcon(e.target.files[0])}
           />
-          
-        </Button >
+          <br />
+        </Button>
         <Button type="submit" variant="contained" color="primary">
           Create Chama
         </Button>
-        </Box>
       </form>
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
         <Alert onClose={handleCloseSnackbar} severity="success">

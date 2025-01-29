@@ -69,7 +69,7 @@ const Dashboard = () => {
   ];
 
   const handleChamaClick = (chamaId) => {
-    navigate(`/chama/${chamaId}/home`);
+    navigate(`/ChamaDashboard/${chamaId}/home`);
   };
 
   const handleCreateChama = () => {
@@ -109,7 +109,7 @@ const Dashboard = () => {
 
         <Grid container spacing={{ xs: 2, md: 3 }} sx={{ mb: 4 }}>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
+            <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Box sx={{ 
                   display: 'flex', 
@@ -127,7 +127,7 @@ const Dashboard = () => {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
+            <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Box sx={{ 
                   display: 'flex', 
@@ -145,7 +145,7 @@ const Dashboard = () => {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{bgcolor: '#e3f2fd', height: '100%' }}>
+            <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Box sx={{ 
                   display: 'flex', 

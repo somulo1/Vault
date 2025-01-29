@@ -68,7 +68,7 @@ const HelpDialog = ({ open, onClose }) => {
 
         <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>Feedback</Typography>
         <TextField
-          label="Your Feedback goes here"
+          label="Your Feedback"
           multiline
           rows={4}
           fullWidth

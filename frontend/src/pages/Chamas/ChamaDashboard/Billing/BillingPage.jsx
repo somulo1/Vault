@@ -91,13 +91,13 @@ const BillingPage = () => {
     {
       id: 1,
       type: 'M-PESA',
-      number: '+254** **** ***',
+      number: '254712345678',
       primary: true,
     },
     {
       id: 2,
       type: 'Bank Account',
-      number: '**** **** ****',
+      number: '**** 1234',
       bank: 'KCB Bank',
       primary: false,
     },
@@ -105,8 +105,8 @@ const BillingPage = () => {
 
   const renderBillingStats = () => (
     <Grid container spacing={3} sx={{ mb: 3 }}>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Receipt sx={{ color: 'primary.main', mr: 1 }} />
@@ -118,8 +118,8 @@ const BillingPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <CheckCircle sx={{ color: 'success.main', mr: 1 }} />
@@ -131,8 +131,8 @@ const BillingPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Warning sx={{ color: 'error.main', mr: 1 }} />
@@ -144,8 +144,8 @@ const BillingPage = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={5} md={3}>
-        <Card sx={{bgcolor: '#e3f2fd', height: '100%',}}>
+      <Grid item xs={12} md={3}>
+        <Card>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <Info sx={{ color: 'primary.main', mr: 1 }} />
@@ -332,8 +332,8 @@ const BillingPage = () => {
                   <FormControl fullWidth>
                     <InputLabel>Payment Method</InputLabel>
                     <Select>
-                      <MenuItem value="mpesa">M-PESA (+254** *** ***)</MenuItem>
-                      <MenuItem value="bank">KCB Bank (**** **** ****)</MenuItem>
+                      <MenuItem value="mpesa">M-PESA (**** 5678)</MenuItem>
+                      <MenuItem value="bank">KCB Bank (**** 1234)</MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>

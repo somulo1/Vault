@@ -4,7 +4,6 @@ import {
   Box,
   CssBaseline,
   Drawer,
-  IconButton,
   List,
   ListItem,
   ListItemButton,
@@ -12,37 +11,45 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  Badge,
-  Avatar,
-  Menu,
-  MenuItem,
-  Divider,
-  useTheme,
-  useMediaQuery,
-  Button,
   InputBase,
   alpha,
   Tooltip,
+  Collapse,
+  Menu,
+  MenuItem,
+  Divider,
+  Button,
+  Badge,
+  Avatar,
+  useTheme,
+  useMediaQuery,
+  IconButton
 } from '@mui/material';
-import {
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import { 
   Menu as MenuIcon,
-  Dashboard,
-  Group,
-  Payment,
-  Chat,
-  Notifications,
-  Settings,
-  AccountCircle,
   Search as SearchIcon,
-  Help,
-  ExitToApp,
-  NotificationsActive,
-  Language,
-  DarkMode,
-  LightMode,
+  Notifications,
+  Dashboard,
+  People,
   Assignment,
   School,
   Campaign,
+  AttachMoney,
+  CreditCard,
+  AccountBalance,
+  Group,
+  Payment,
+  Chat,
+  NotificationsActive,
+  Settings,
+  AccountCircle,
+  Help,
+  ExitToApp,
+  Language,
+  DarkMode,
+  LightMode
 } from '@mui/icons-material';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import SearchBar from '../common/SearchBar';
@@ -52,6 +59,66 @@ import LanguageDialog from '../common/LanguageDialog';
 import HelpDialog from '../common/HelpDialog';
 
 const drawerWidth = 240;
+
+const ApplyLoanMenu = () => {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  const handleLoanTypeNavigation = (path) => {
+    navigate(`/dashboard${path}`);
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <ListItem 
+        onClick={handleClick} 
+        sx={{ cursor: 'pointer' }}
+      >
+        <ListItemIcon>
+          <AttachMoney />
+        </ListItemIcon>
+        <ListItemText primary="Apply Loan" />
+        {open ? <ExpandLess /> : <ExpandMore />}
+      </ListItem>
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItem 
+            onClick={() => handleLoanTypeNavigation('/loans/digital')}
+            sx={{ pl: 4, cursor: 'pointer' }}
+          >
+            <ListItemIcon>
+              <CreditCard />
+            </ListItemIcon>
+            <ListItemText primary="Digital Loans" />
+          </ListItem>
+          <ListItem 
+            onClick={() => handleLoanTypeNavigation('/loans/mobile')}
+            sx={{ pl: 4, cursor: 'pointer' }}
+          >
+            <ListItemIcon>
+              <AttachMoney />
+            </ListItemIcon>
+            <ListItemText primary="Mobile Loans" />
+          </ListItem>
+          <ListItem 
+            onClick={() => handleLoanTypeNavigation('/loans')}
+            sx={{ pl: 4, cursor: 'pointer' }}
+          >
+            <ListItemIcon>
+              <AccountBalance />
+            </ListItemIcon>
+            <ListItemText primary="VaultInua Loans" />
+          </ListItem>
+        </List>
+      </Collapse>
+    </>
+  );
+};
 
 const MainLayout = () => {
   const theme = useTheme();
@@ -100,7 +167,7 @@ const MainLayout = () => {
   const handleLogout = () => {
     // Add logout logic here
     handleProfileMenuClose();
-    navigate('/login');
+    navigate('/');
   };
 
   const handleThemeToggle = () => {
@@ -122,14 +189,15 @@ const MainLayout = () => {
   };
 
   const menuItems = [
-    { text: 'Dashboard', icon: <Dashboard />, path: '/' },
-    { text: 'My Chamas', icon: <Group />, path: '/chamas' },
-    { text: 'Payments', icon: <Payment />, path: '/payments' },
-    { text: 'Chat', icon: <Chat />, path: '/chat' },
-    { text: 'Noticeboard', icon: <Campaign />, path: '/noticeboard' },
-    { text: 'Learning', icon: <School />, path: '/learning' },
-    { text: 'Reports', icon: <Assignment />, path: '/reports' },
-    { text: 'Settings', icon: <Settings />, path: '/settings' },
+    { text: 'Dashboard', icon: <Dashboard />, path: '/dashboard' },
+    { text: 'My Chamas', icon: <Group />, path: '/dashboard/chamas' },
+    { text: 'Payments', icon: <Payment />, path: '/dashboard/payments' },
+    // { text: 'Apply Loan', icon: <Payment />, path: '/VaultInuaLoan' },
+    { text: 'Chat', icon: <Chat />, path: '/dashboard/chat' },
+    { text: 'Noticeboard', icon: <Campaign />, path: '/dashboard/noticeboard' },
+    { text: 'Learning', icon: <School />, path: '/dashboard/learning' },
+    { text: 'Reports', icon: <Assignment />, path: '/dashboard/reports' },
+    { text: 'Settings', icon: <Settings />, path: '/dashboard/settings' },
   ];
 
   const notifications = [
@@ -137,7 +205,7 @@ const MainLayout = () => {
     { id: 2, text: 'Meeting reminder: Investment Club', time: '1 hour ago' },
     { id: 3, text: 'New member request', time: '2 hours ago' },
   ];
-// Chama name or icon goes here
+
   const drawer = (
     <Box>
       <Toolbar>
@@ -147,22 +215,59 @@ const MainLayout = () => {
       </Toolbar>
       <Divider />
       <List>
-        {menuItems.map((item) => (
-          <ListItem key={item.text} disablePadding>
-            <ListItemButton
-              selected={location.pathname === item.path}
-              onClick={() => {
-                navigate(item.path);
-                if (isMobile) setMobileOpen(false);
-              }}
-            >
-              <ListItemIcon sx={{ color: location.pathname === item.path ? 'primary.main' : 'inherit' }}>
-                {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem 
+          onClick={() => navigate('/dashboard')}
+          sx={{ cursor: 'pointer' }}
+        >
+          <ListItemIcon>
+            <Dashboard />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItem>
+
+        <ListItem 
+          onClick={() => navigate('/dashboard/chamas')}
+          sx={{ cursor: 'pointer' }}
+        >
+          <ListItemIcon>
+            <Group />
+          </ListItemIcon>
+          <ListItemText primary="Chamas" />
+        </ListItem>
+
+        <ListItem 
+          onClick={() => navigate('/dashboard/payments')}
+          sx={{ cursor: 'pointer' }}
+        >
+          <ListItemIcon>
+            <Payment />
+          </ListItemIcon>
+          <ListItemText primary="Payments" />
+        </ListItem>
+
+        <ListItem 
+          onClick={() => navigate('/dashboard/chat')}
+          sx={{ cursor: 'pointer' }}
+        >
+          <ListItemIcon>
+            <Chat />
+          </ListItemIcon>
+          <ListItemText primary="Chat" />
+        </ListItem>
+
+        {/* Apply Loan Menu */}
+        <ApplyLoanMenu />
+
+        {/* Settings */}
+        <ListItem 
+          onClick={() => navigate('/dashboard/settings')}
+          sx={{ cursor: 'pointer' }}
+        >
+          <ListItemIcon>
+            <Settings />
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
+        </ListItem>
       </List>
     </Box>
   );
@@ -170,38 +275,27 @@ const MainLayout = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
-          bgcolor: '#1a237e',
-        }}
-      >
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             color="inherit"
-            edge="start"
+            aria-label="open drawer"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            edge="start"
+            sx={{ mr: 2, ...(mobileOpen && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
-
-          <Box sx={{ 
-            flexGrow: 1,
-            display: { xs: 'none', sm: 'flex' }
-          }}>
+          <Typography variant="h6" noWrap component="div">
+            ChamaVault
+          </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: 'flex', gap: 1 }}>
             <SearchBar
               placeholder="Search chamas, members, meetings..."
               width="100%"
               variant="navbar"
             />
-          </Box>
-
-          <Box sx={{ flexGrow: 1 }} />
-
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Tooltip title="Change language">
               <IconButton color="inherit" onClick={handleLanguageClick}>
                 <Language />
@@ -353,7 +447,7 @@ const MainLayout = () => {
           </ListItemIcon>
           Profile
         </MenuItem>
-        <MenuItem onClick={() => { navigate('/settings'); handleProfileMenuClose(); }}>
+        <MenuItem onClick={() => { navigate('/dashboard/settings'); handleProfileMenuClose(); }}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
