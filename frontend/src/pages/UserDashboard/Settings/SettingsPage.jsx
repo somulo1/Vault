@@ -323,6 +323,16 @@ const SettingsPage = () => {
               >
                 Save Changes
               </Button>
+              <br />
+              <br />
+              <Button 
+                variant="contained" 
+                color="primary" 
+                fullWidth
+                href="/admin"
+              >
+                Check Changes
+              </Button>
             </CardContent>
           </Card>
         </Grid>
